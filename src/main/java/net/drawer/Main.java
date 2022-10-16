@@ -24,11 +24,11 @@ public class Main {
         }
         drawer = Drawer.createNewDrawer(token);
         pluginFolder.mkdir();
-        System.out.println("Loading plugins...");
+        drawer.getLogger().info("Loading plugins...");
         plugins = drawer.getPluginManager().loadPluginFolder(pluginFolder);
         if (plugins != null) {
             for (Plugin plugin : plugins) {
-                System.out.println("Enabling " + plugin.getName() + " plugin...");
+                drawer.getLogger().info("Enabling " + plugin.getName() + " plugin...");
                 plugin.runInContext(() -> plugin.onEnable(false));
             }
         }
