@@ -36,7 +36,7 @@ public class PluginManager {
         }
         plugin = pluginClassLoader.getPlugin();
         this.plugins.put(plugin.getName(), plugin);
-        plugin.runInContext(plugin::onLoad);
+        PluginContext.runInPluginContext(plugin, plugin::onLoad);
         return plugin;
     }
 
@@ -84,6 +84,10 @@ public class PluginManager {
             return null;
         return this.plugins.get(name);
     }
+    
+    public Set<Plugin> getPlugins() {
+        return new HashSet<Plugin>(this.plugins.values());
+    }
 
     public boolean callEvent(final Event event) {
         return false;
@@ -92,4 +96,5 @@ public class PluginManager {
     public Drawer getDrawer() {
         return this.drawer;
     }
+
 }
