@@ -1,0 +1,21 @@
+plugins {
+    id 'java'
+}
+
+group 'net.drawer'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral();
+}
+
+dependencies {
+    implementation 'net.dv8tion:JDA:5.0.0-alpha.20'
+    implementation 'org.yaml:snakeyaml:1.33'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+}
+
+test {
+    useJUnitPlatform()
+}
