@@ -1,18 +1,21 @@
 package net.drawer;
 
 import net.drawer.plugin.Plugin;
+import net.drawer.plugin.PluginContext;
 
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Set;
+import java.util.logging.Logger;
 
 public class Main {
 
     public static void main(String[] args) throws InterruptedException {
         final File pluginFolder = new File("plugins");
         final Drawer drawer;
+        final Logger logger;
         final BufferedReader console;
         final Set<Plugin> plugins;
         String token = System.getProperty("DISCORD_TOKEN");
@@ -23,12 +26,13 @@ public class Main {
             return;
         }
         drawer = Drawer.createNewDrawer(token);
+        logger = drawer.getLogger();
         pluginFolder.mkdir();
-        drawer.getLogger().info("Loading plugins...");
+        logger.info("Loading plugins...");
         plugins = drawer.getPluginManager().loadPluginFolder(pluginFolder);
         if (plugins != null) {
             for (Plugin plugin : plugins) {
-                drawer.getLogger().info("Enabling " + plugin.getName() + " plugin...");
+                logger.info("Enabling " + plugin.getName() + " plugin...");
                 plugin.runInContext(() -> plugin.onEnable(false));
             }
         }
