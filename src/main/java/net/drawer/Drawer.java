@@ -7,13 +7,16 @@ import net.dv8tion.jda.api.requests.GatewayIntent;
 import net.dv8tion.jda.api.utils.cache.CacheFlag;
 
 import java.util.Arrays;
+import java.util.logging.Logger;
 
 public class Drawer {
 
+    private final Logger logger;
     private final JDA jda;
     private final PluginManager pluginManager;
 
     private Drawer(final JDA jda) {
+        logger = Logger.getLogger("Drower");
         this.jda = jda;
         this.pluginManager = new PluginManager(this);
     }
@@ -24,6 +27,10 @@ public class Drawer {
 
     public JDA getJda() {
         return this.jda;
+    }
+
+    public Logger getLogger() {
+        return this.logger;
     }
 
     public static Drawer createNewDrawer(final JDABuilder jdaBuilder) throws InterruptedException {
