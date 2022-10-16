@@ -49,13 +49,4 @@ public class Plugin {
         return this.drawer;
     }
 
-    public void runInContext(final Runnable runnable) {
-        final Thread thread = Thread.currentThread();
-        final ClassLoader classLoader = thread.getContextClassLoader();
-
-        thread.setContextClassLoader(getClass().getClassLoader());
-        runnable.run();
-        thread.setContextClassLoader(classLoader);
-    }
-
 }

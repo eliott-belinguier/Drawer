@@ -33,7 +33,7 @@ public class Main {
         if (plugins != null) {
             for (Plugin plugin : plugins) {
                 logger.info("Enabling " + plugin.getName() + " plugin...");
-                plugin.runInContext(() -> plugin.onEnable(false));
+                PluginContext.runInPluginContext(plugin, () -> plugin.onEnable(false));
             }
         }
         console = new BufferedReader(new InputStreamReader(System.in));
@@ -43,6 +43,11 @@ public class Main {
                     break;
             }
         } catch (IOException ignored) {};
+        logger.info("Disabling plugins...");
+        for (Plugin plugin : drawer.getPluginManager().getPlugins()) {
+            logger.info("Disabling " + plugin.getName() + " plugin...");
+            PluginContext.runInPluginContext(plugin, () -> plugin.onDisable(false));
+        }
         drawer.getJda().shutdown();
     }
 
