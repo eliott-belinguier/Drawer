@@ -2,6 +2,14 @@ plugins {
     id 'java'
 }
 
+jar {
+    manifest {
+        attributes(
+                'Main-Class': 'net.drawer.Main'
+        )
+    }
+}
+
 group 'net.drawer'
 version '1.0-SNAPSHOT'
 
