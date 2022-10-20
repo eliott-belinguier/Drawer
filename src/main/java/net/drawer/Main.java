@@ -33,6 +33,7 @@ public class Main {
         if (plugins != null) {
             for (Plugin plugin : plugins) {
                 logger.info("Enabling " + plugin.getName() + " plugin...");
+
                 PluginContext.runInPluginContext(plugin, () -> plugin.onEnable(false));
             }
         }

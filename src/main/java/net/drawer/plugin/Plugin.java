@@ -1,6 +1,14 @@
 package net.drawer.plugin;
 
 import net.drawer.Drawer;
+import net.drawer.plugin.exceptions.InvalidConfigException;
+import net.drawer.plugin.exceptions.InvalidPluginException;
+import org.yaml.snakeyaml.Yaml;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+import java.util.Map;
 
 public class Plugin {
 
@@ -10,6 +18,7 @@ public class Plugin {
     public Plugin() {
         final ClassLoader classLoader = getClass().getClassLoader();
         final PluginClassLoader pluginClassLoader;
+
 
         if (classLoader instanceof PluginClassLoader) {
             pluginClassLoader = (PluginClassLoader) classLoader;
@@ -47,6 +56,24 @@ public class Plugin {
 
     public Drawer getDrawer() {
         return this.drawer;
+    }
+
+    public PluginConfig getConfig() {
+        try {
+            return this.drawer.getPluginManager().getConfig(this, "config");
+        } catch (InvalidConfigException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public PluginConfig getConfig(String config) {
+        try {
+            return this.drawer.getPluginManager().getConfig(this, config);
+        } catch (InvalidConfigException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
 }

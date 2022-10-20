@@ -1,5 +1,6 @@
 package net.drawer.plugin;
 
+import net.drawer.plugin.exceptions.InvalidPluginInfoException;
 import org.yaml.snakeyaml.Yaml;
 
 import java.io.File;
@@ -21,9 +22,9 @@ public class PluginInfo {
         this.mainClassName = mainClassName;
     }
 
-    public String getName() {
-        return this.name;
-    }
+    public String getPluginFolderPath() { return "plugins/"+name+"/";}
+
+    public String getName() { return this.name; }
 
     public String getVersion() {
         return this.version;

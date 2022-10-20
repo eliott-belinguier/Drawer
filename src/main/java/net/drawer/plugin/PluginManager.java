@@ -1,7 +1,11 @@
 package net.drawer.plugin;
 
+import com.sun.org.apache.xpath.internal.objects.XNull;
 import net.drawer.Drawer;
 import net.drawer.event.Event;
+import net.drawer.plugin.exceptions.InvalidConfigException;
+import net.drawer.plugin.exceptions.InvalidPluginException;
+import net.drawer.plugin.exceptions.InvalidPluginInfoException;
 
 import java.io.File;
 import java.net.MalformedURLException;
@@ -84,7 +88,24 @@ public class PluginManager {
             return null;
         return this.plugins.get(name);
     }
-    
+
+    public PluginConfig getConfig(Plugin plugin, String config) throws InvalidConfigException {
+        if (config == null) {
+            throw new NullPointerException("Config must be not null");
+        }
+        File f = new File(plugin.getPluginInfo().getPluginFolderPath());
+
+        if (f == null || !f.isDirectory()) {
+            throw new NullPointerException("Plugin directory must be not null and a folder");
+        }
+
+        File configFile = new File(f.getAbsoluteFile() + "/" + config + ".yml");
+        if (configFile == null) {
+            throw new InvalidConfigException("Config " + config + " must exist");
+        }
+    return PluginConfig.fromFile(configFile);
+    }
+
     public Set<Plugin> getPlugins() {
         return new HashSet<Plugin>(this.plugins.values());
     }

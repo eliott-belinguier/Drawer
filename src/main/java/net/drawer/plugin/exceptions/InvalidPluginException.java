@@ -1,4 +1,4 @@
-package net.drawer.plugin;
+package net.drawer.plugin.exceptions;
 
 public class InvalidPluginException extends Exception {
 

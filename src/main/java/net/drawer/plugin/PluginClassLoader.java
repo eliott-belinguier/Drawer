@@ -1,5 +1,7 @@
 package net.drawer.plugin;
 
+import net.drawer.plugin.exceptions.InvalidPluginException;
+
 import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URL;
