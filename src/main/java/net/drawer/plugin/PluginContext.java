@@ -24,7 +24,7 @@ public class PluginContext {
         thread.setContextClassLoader(classLoader);
     }
 
-    public static Plugin getPluginContest() {
+    public static Plugin getPluginContext() {
         final ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
 
         if (classLoader instanceof PluginClassLoader)
