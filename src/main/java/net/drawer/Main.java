@@ -35,6 +35,9 @@ public class Main {
                 logger.info("Enabling " + plugin.getName() + " plugin...");
 
                 PluginContext.runInPluginContext(plugin, () -> plugin.onEnable(false));
+                new File(plugin.getPluginInfo().getPluginFolderPath()).mkdir();
+
+                //TODO : Create detected created files in resource folder and get them
             }
         }
         console = new BufferedReader(new InputStreamReader(System.in));
