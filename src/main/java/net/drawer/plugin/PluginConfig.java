@@ -3,6 +3,7 @@ package net.drawer.plugin;
 import org.yaml.snakeyaml.Yaml;
 
 import java.io.*;
+import java.util.List;
 import java.util.Map;
 
 public class PluginConfig {
@@ -74,4 +75,8 @@ public class PluginConfig {
     public boolean getAsBoolean(String key) {
         return getAs(Boolean.class, key);
     }
+
+    public List getAsList(String key) {return getAs(List.class, key);}
+
+    public Map getAsMap(String key) {return getAs(Map.class, key);}
 }

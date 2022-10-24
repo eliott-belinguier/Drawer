@@ -39,8 +39,6 @@ public class Main {
 
                 PluginContext.runInPluginContext(plugin, () -> plugin.onEnable(false));
                 System.out.println("Creating folder : "+plugin.getPluginInfo().getPluginFolderPath());
-
-                //TODO : Create detected created files in resource folder and get them
             }
         }
         console = new BufferedReader(new InputStreamReader(System.in));
