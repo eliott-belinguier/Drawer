@@ -4,7 +4,6 @@ import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.entities.Member;
 import net.dv8tion.jda.api.entities.User;
 import net.dv8tion.jda.api.events.Event;
-import net.dv8tion.jda.api.events.interaction.command.GenericContextInteractionEvent;
 import net.dv8tion.jda.api.interactions.Interaction;
 import net.dv8tion.jda.api.interactions.commands.context.ContextInteraction;
 import net.dv8tion.jda.api.interactions.commands.context.UserContextInteraction;
@@ -21,7 +20,7 @@ public class UserContextInteractionEvent extends ContextInteractionEvent<User> i
         super(jdaEvent, interaction);
     }
 
-    public UserContextInteractionEvent(final GenericContextInteractionEvent<User> jdaEvent) {
+    public UserContextInteractionEvent(final net.dv8tion.jda.api.events.interaction.command.UserContextInteractionEvent jdaEvent) {
         super(jdaEvent, jdaEvent.getInteraction());
     }
 
