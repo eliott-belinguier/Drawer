@@ -1,6 +1,7 @@
 package net.drawer;
 
 import net.drawer.plugin.PluginManager;
+import net.dv8tion.jda.api.events.interaction.ModalInteractionEvent;
 import net.dv8tion.jda.api.events.interaction.command.CommandAutoCompleteInteractionEvent;
 import net.dv8tion.jda.api.events.interaction.command.MessageContextInteractionEvent;
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent;
@@ -49,4 +50,9 @@ public class DrawerListenerAdapter extends ListenerAdapter {
         this.pluginManager.callEvent(new net.drawer.event.jda.interaction.CommandAutoCompleteInteractionEvent(event));
     }
 
+    @Override
+    public void onModalInteraction(@Nonnull ModalInteractionEvent event) {
+        this.pluginManager.callEvent(new net.drawer.event.jda.interaction.ModalInteractionEvent(event));
+    }
+    
 }
