@@ -26,12 +26,17 @@ public class Main {
             return;
         }
         drawer = Drawer.createNewDrawer(token);
+<<<<<<< HEAD
+=======
+        drawer.getJda().addEventListener(new DrawerListenerAdapter(drawer.getPluginManager()));
+>>>>>>> master
         logger = drawer.getLogger();
         pluginFolder.mkdir();
         logger.info("Loading plugins...");
         plugins = drawer.getPluginManager().loadPluginFolder(pluginFolder);
         if (plugins != null) {
             for (Plugin plugin : plugins) {
+<<<<<<< HEAD
 
                 new File(plugin.getPluginInfo().getPluginFolderPath()).mkdir();
 
@@ -39,6 +44,10 @@ public class Main {
 
                 PluginContext.runInPluginContext(plugin, () -> plugin.onEnable(false));
                 System.out.println("Creating folder : "+plugin.getPluginInfo().getPluginFolderPath());
+=======
+                logger.info("Enabling " + plugin.getName() + " plugin...");
+                PluginContext.runInPluginContext(plugin, () -> plugin.onEnable(false));
+>>>>>>> master
             }
         }
         console = new BufferedReader(new InputStreamReader(System.in));
