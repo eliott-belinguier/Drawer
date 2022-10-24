@@ -19,6 +19,7 @@ public class ListenerCallable {
         this.listener = listener;
         this.method = method;
         this.eventListener = eventListener;
+        this.method.setAccessible(true);
     }
 
     public void call(final Event event) {
