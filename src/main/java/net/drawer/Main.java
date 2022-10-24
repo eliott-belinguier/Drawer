@@ -32,10 +32,13 @@ public class Main {
         plugins = drawer.getPluginManager().loadPluginFolder(pluginFolder);
         if (plugins != null) {
             for (Plugin plugin : plugins) {
+
+                new File(plugin.getPluginInfo().getPluginFolderPath()).mkdir();
+
                 logger.info("Enabling " + plugin.getName() + " plugin...");
 
                 PluginContext.runInPluginContext(plugin, () -> plugin.onEnable(false));
-                new File(plugin.getPluginInfo().getPluginFolderPath()).mkdir();
+                System.out.println("Creating folder : "+plugin.getPluginInfo().getPluginFolderPath());
 
                 //TODO : Create detected created files in resource folder and get them
             }
