@@ -26,6 +26,7 @@ public class Main {
             return;
         }
         drawer = Drawer.createNewDrawer(token);
+        drawer.getJda().addEventListener(new DrawerListenerAdapter(drawer.getPluginManager()));
         logger = drawer.getLogger();
         pluginFolder.mkdir();
         logger.info("Loading plugins...");
