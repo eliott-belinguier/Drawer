@@ -8,6 +8,7 @@ import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEve
 import net.dv8tion.jda.api.events.interaction.command.UserContextInteractionEvent;
 import net.dv8tion.jda.api.events.interaction.component.ButtonInteractionEvent;
 import net.dv8tion.jda.api.events.interaction.component.SelectMenuInteractionEvent;
+import net.dv8tion.jda.api.events.user.update.UserUpdateNameEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 
 import javax.annotation.Nonnull;
@@ -54,5 +55,10 @@ public class DrawerListenerAdapter extends ListenerAdapter {
     public void onModalInteraction(@Nonnull ModalInteractionEvent event) {
         this.pluginManager.callEvent(new net.drawer.event.jda.interaction.ModalInteractionEvent(event));
     }
-    
+
+    @Override
+    public void onUserUpdateName(@Nonnull UserUpdateNameEvent event) {
+        this.pluginManager.callEvent(new net.drawer.event.jda.user.UserUpdateNameEvent(event));
+    }
+
 }
