@@ -1,9 +1,12 @@
 package net.drawer;
 
 import net.drawer.plugin.PluginManager;
+import net.dv8tion.jda.api.events.interaction.command.MessageContextInteractionEvent;
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent;
 import net.dv8tion.jda.api.events.interaction.command.UserContextInteractionEvent;
+import net.dv8tion.jda.api.events.interaction.component.ButtonInteractionEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
+import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nonnull;
 
@@ -23,6 +26,11 @@ public class DrawerListenerAdapter extends ListenerAdapter {
     @Override
     public void onUserContextInteraction(@Nonnull UserContextInteractionEvent event) {
         this.pluginManager.callEvent(new net.drawer.event.interaction.UserContextInteractionEvent(event));
+    }
+
+    @Override
+    public void onMessageContextInteraction(@Nonnull MessageContextInteractionEvent event) {
+        this.pluginManager.callEvent(new net.drawer.event.interaction.MessageContextInteractionEvent(event));
     }
 
 }
