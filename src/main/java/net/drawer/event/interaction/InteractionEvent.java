@@ -7,7 +7,6 @@ import net.dv8tion.jda.api.entities.Member;
 import net.dv8tion.jda.api.entities.User;
 import net.dv8tion.jda.api.entities.channel.Channel;
 import net.dv8tion.jda.api.events.Event;
-import net.dv8tion.jda.api.events.interaction.GenericInteractionCreateEvent;
 import net.dv8tion.jda.api.interactions.DiscordLocale;
 import net.dv8tion.jda.api.interactions.Interaction;
 import org.jetbrains.annotations.NotNull;
