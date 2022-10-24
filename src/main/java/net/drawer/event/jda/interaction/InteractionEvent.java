@@ -1,4 +1,4 @@
-package net.drawer.event.interaction;
+package net.drawer.event.jda.interaction;
 
 import net.drawer.event.jda.JDAEvent;
 import net.dv8tion.jda.api.JDA;

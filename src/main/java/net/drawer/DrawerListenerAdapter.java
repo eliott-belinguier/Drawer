@@ -19,22 +19,22 @@ public class DrawerListenerAdapter extends ListenerAdapter {
 
     @Override
     public void onSlashCommandInteraction(@Nonnull SlashCommandInteractionEvent event) {
-        this.pluginManager.callEvent(new net.drawer.event.interaction.SlashCommandInteractionEvent(event));
+        this.pluginManager.callEvent(new net.drawer.event.jda.interaction.SlashCommandInteractionEvent(event));
     }
 
     @Override
     public void onUserContextInteraction(@Nonnull UserContextInteractionEvent event) {
-        this.pluginManager.callEvent(new net.drawer.event.interaction.UserContextInteractionEvent(event));
+        this.pluginManager.callEvent(new net.drawer.event.jda.interaction.UserContextInteractionEvent(event));
     }
 
     @Override
     public void onMessageContextInteraction(@Nonnull MessageContextInteractionEvent event) {
-        this.pluginManager.callEvent(new net.drawer.event.interaction.MessageContextInteractionEvent(event));
+        this.pluginManager.callEvent(new net.drawer.event.jda.interaction.MessageContextInteractionEvent(event));
     }
 
     @Override
     public void onButtonInteraction(@Nonnull ButtonInteractionEvent event) {
-        this.pluginManager.callEvent(new net.drawer.event.interaction.ButtonInteractionEvent(event));
+        this.pluginManager.callEvent(new net.drawer.event.jda.interaction.ButtonInteractionEvent(event));
     }
 
 }
