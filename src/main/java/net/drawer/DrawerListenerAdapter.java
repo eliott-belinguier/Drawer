@@ -81,4 +81,9 @@ public class DrawerListenerAdapter extends ListenerAdapter {
         this.pluginManager.callEvent(new net.drawer.event.jda.user.UserUpdateActivityOrderEvent(event));
     }
 
+    @Override
+    public void onUserUpdateFlags(@Nonnull UserUpdateFlagsEvent event) {
+        this.pluginManager.callEvent(new net.drawer.event.jda.user.UserUpdateFlagsEvent(event));
+    }
+
 }
