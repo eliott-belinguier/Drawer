@@ -11,7 +11,9 @@ import net.dv8tion.jda.api.events.interaction.component.SelectMenuInteractionEve
 import net.dv8tion.jda.api.events.user.update.UserUpdateAvatarEvent;
 import net.dv8tion.jda.api.events.user.update.UserUpdateDiscriminatorEvent;
 import net.dv8tion.jda.api.events.user.update.UserUpdateNameEvent;
+import net.dv8tion.jda.api.events.user.update.UserUpdateOnlineStatusEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
+import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nonnull;
 
@@ -71,6 +73,11 @@ public class DrawerListenerAdapter extends ListenerAdapter {
     @Override
     public void onUserUpdateAvatar(@Nonnull UserUpdateAvatarEvent event) {
         this.pluginManager.callEvent(new net.drawer.event.jda.user.UserUpdateAvatarEvent(event));
+    }
+
+    @Override
+    public void onUserUpdateOnlineStatus(@Nonnull UserUpdateOnlineStatusEvent event) {
+        this.pluginManager.callEvent(new net.drawer.event.jda.user.UserUpdateOnlineStatusEvent(event));
     }
     
 }
