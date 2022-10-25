@@ -8,6 +8,7 @@ import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEve
 import net.dv8tion.jda.api.events.interaction.command.UserContextInteractionEvent;
 import net.dv8tion.jda.api.events.interaction.component.ButtonInteractionEvent;
 import net.dv8tion.jda.api.events.interaction.component.SelectMenuInteractionEvent;
+import net.dv8tion.jda.api.events.user.UserTypingEvent;
 import net.dv8tion.jda.api.events.user.update.*;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 
@@ -84,6 +85,11 @@ public class DrawerListenerAdapter extends ListenerAdapter {
     @Override
     public void onUserUpdateFlags(@Nonnull UserUpdateFlagsEvent event) {
         this.pluginManager.callEvent(new net.drawer.event.jda.user.UserUpdateFlagsEvent(event));
+    }
+
+    @Override
+    public void onUserTyping(@Nonnull UserTypingEvent event) {
+        this.pluginManager.callEvent(new net.drawer.event.jda.user.UserTypingEvent(event));
     }
 
 }
