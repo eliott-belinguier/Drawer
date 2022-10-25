@@ -79,5 +79,5 @@ public class DrawerListenerAdapter extends ListenerAdapter {
     public void onUserUpdateOnlineStatus(@Nonnull UserUpdateOnlineStatusEvent event) {
         this.pluginManager.callEvent(new net.drawer.event.jda.user.UserUpdateOnlineStatusEvent(event));
     }
-    
+
 }
