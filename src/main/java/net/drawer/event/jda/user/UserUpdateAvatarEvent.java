@@ -9,7 +9,7 @@ import javax.annotation.Nullable;
 
 public class UserUpdateAvatarEvent extends UserUpdateEvent<String> {
 
-    public static final String IDENTIFIER = "discriminator";
+    public static final String IDENTIFIER = "avatar";
 
     public UserUpdateAvatarEvent(final JDA jda, final long responseNumber, final User user, final String oldDiscriminator) {
         super(jda, responseNumber, user, oldDiscriminator, user.getDiscriminator(), IDENTIFIER);
@@ -52,5 +52,5 @@ public class UserUpdateAvatarEvent extends UserUpdateEvent<String> {
 
         return newAvatarUrl == null ? null : new ImageProxy(newAvatarUrl);
     }
-    
+
 }
