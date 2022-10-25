@@ -17,7 +17,7 @@ public class UserTypingEvent extends UserEvent {
     protected final MessageChannel channel;
     protected final OffsetDateTime timestamp;
 
-    public UserTypingEvent(final JDA jda, final long responseNumber, final User user, final MessageChannel channel, OffsetDateTime timestamp, Member member) {
+    public UserTypingEvent(final JDA jda, final long responseNumber, final User user, final MessageChannel channel, final OffsetDateTime timestamp, final Member member) {
         super(jda, responseNumber, user);
         this.member = member;
         this.channel = channel;

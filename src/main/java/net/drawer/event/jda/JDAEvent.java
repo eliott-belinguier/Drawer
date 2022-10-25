@@ -6,6 +6,8 @@ import net.dv8tion.jda.api.utils.data.DataObject;
 import net.dv8tion.jda.internal.JDAImpl;
 import net.dv8tion.jda.internal.handle.SocketHandler;
 
+import javax.annotation.Nonnull;
+
 public class JDAEvent extends Event {
 
     protected final JDA jda;
@@ -22,6 +24,7 @@ public class JDAEvent extends Event {
         this(jdaEvent.getJDA(), jdaEvent.getResponseNumber());
     }
 
+    @Nonnull
     public JDA getJDA() {
         return this.jda;
     }
