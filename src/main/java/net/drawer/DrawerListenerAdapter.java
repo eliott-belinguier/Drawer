@@ -8,6 +8,7 @@ import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEve
 import net.dv8tion.jda.api.events.interaction.command.UserContextInteractionEvent;
 import net.dv8tion.jda.api.events.interaction.component.ButtonInteractionEvent;
 import net.dv8tion.jda.api.events.interaction.component.SelectMenuInteractionEvent;
+import net.dv8tion.jda.api.events.user.update.UserUpdateAvatarEvent;
 import net.dv8tion.jda.api.events.user.update.UserUpdateDiscriminatorEvent;
 import net.dv8tion.jda.api.events.user.update.UserUpdateNameEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
@@ -66,4 +67,10 @@ public class DrawerListenerAdapter extends ListenerAdapter {
     public void onUserUpdateDiscriminator(@Nonnull UserUpdateDiscriminatorEvent event) {
         this.pluginManager.callEvent(new net.drawer.event.jda.user.UserUpdateDiscriminatorEvent(event));
     }
+
+    @Override
+    public void onUserUpdateAvatar(@Nonnull UserUpdateAvatarEvent event) {
+        this.pluginManager.callEvent(new net.drawer.event.jda.user.UserUpdateAvatarEvent(event));
+    }
+    
 }
