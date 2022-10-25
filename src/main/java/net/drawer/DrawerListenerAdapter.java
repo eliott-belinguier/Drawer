@@ -8,6 +8,10 @@ import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEve
 import net.dv8tion.jda.api.events.interaction.command.UserContextInteractionEvent;
 import net.dv8tion.jda.api.events.interaction.component.ButtonInteractionEvent;
 import net.dv8tion.jda.api.events.interaction.component.SelectMenuInteractionEvent;
+import net.dv8tion.jda.api.events.user.UserActivityEndEvent;
+import net.dv8tion.jda.api.events.user.UserActivityStartEvent;
+import net.dv8tion.jda.api.events.user.UserTypingEvent;
+import net.dv8tion.jda.api.events.user.update.*;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 
 import javax.annotation.Nonnull;
@@ -54,5 +58,55 @@ public class DrawerListenerAdapter extends ListenerAdapter {
     public void onModalInteraction(@Nonnull ModalInteractionEvent event) {
         this.pluginManager.callEvent(new net.drawer.event.jda.interaction.ModalInteractionEvent(event));
     }
-    
+
+    @Override
+    public void onUserUpdateName(@Nonnull UserUpdateNameEvent event) {
+        this.pluginManager.callEvent(new net.drawer.event.jda.user.UserUpdateNameEvent(event));
+    }
+
+    @Override
+    public void onUserUpdateDiscriminator(@Nonnull UserUpdateDiscriminatorEvent event) {
+        this.pluginManager.callEvent(new net.drawer.event.jda.user.UserUpdateDiscriminatorEvent(event));
+    }
+
+    @Override
+    public void onUserUpdateAvatar(@Nonnull UserUpdateAvatarEvent event) {
+        this.pluginManager.callEvent(new net.drawer.event.jda.user.UserUpdateAvatarEvent(event));
+    }
+
+    @Override
+    public void onUserUpdateOnlineStatus(@Nonnull UserUpdateOnlineStatusEvent event) {
+        this.pluginManager.callEvent(new net.drawer.event.jda.user.UserUpdateOnlineStatusEvent(event));
+    }
+
+    @Override
+    public void onUserUpdateActivityOrder(@Nonnull UserUpdateActivityOrderEvent event) {
+        this.pluginManager.callEvent(new net.drawer.event.jda.user.UserUpdateActivityOrderEvent(event));
+    }
+
+    @Override
+    public void onUserUpdateFlags(@Nonnull UserUpdateFlagsEvent event) {
+        this.pluginManager.callEvent(new net.drawer.event.jda.user.UserUpdateFlagsEvent(event));
+    }
+
+    @Override
+    public void onUserTyping(@Nonnull UserTypingEvent event) {
+        this.pluginManager.callEvent(new net.drawer.event.jda.user.UserTypingEvent(event));
+    }
+
+    @Override
+    public void onUserActivityStart(@Nonnull UserActivityStartEvent event) {
+        this.pluginManager.callEvent(new net.drawer.event.jda.user.UserActivityStartEvent(event));
+    }
+
+    @Override
+    public void onUserActivityEnd(@Nonnull UserActivityEndEvent event) {
+        this.pluginManager.callEvent(new net.drawer.event.jda.user.UserActivityEndEvent(event));
+    }
+
+    @Override
+    public void onUserUpdateActivities(@Nonnull UserUpdateActivitiesEvent event) {
+        this.pluginManager.callEvent(new net.drawer.event.jda.user.UserUpdateActivitiesEvent(event));
+    }
+
 }
