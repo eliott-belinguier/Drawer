@@ -11,8 +11,8 @@ public class UserUpdateAvatarEvent extends UserUpdateEvent<String> {
 
     public static final String IDENTIFIER = "avatar";
 
-    public UserUpdateAvatarEvent(final JDA jda, final long responseNumber, final User user, final String oldDiscriminator) {
-        super(jda, responseNumber, user, oldDiscriminator, user.getDiscriminator(), IDENTIFIER);
+    public UserUpdateAvatarEvent(final JDA jda, final long responseNumber, final User user, final String oldAvatar) {
+        super(jda, responseNumber, user, oldAvatar, user.getAvatarId(), IDENTIFIER);
     }
 
     public UserUpdateAvatarEvent(final net.dv8tion.jda.api.events.user.update.UserUpdateAvatarEvent jdaEvent) {
