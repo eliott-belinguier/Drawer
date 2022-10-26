@@ -114,7 +114,7 @@ public class PluginManager {
         if (plugin == null)
             return false;
         parameters = method.getParameterTypes();
-        if (parameters.length != 1 || !parameters[0].isAssignableFrom(Event.class))
+        if (parameters.length != 1 || !Event.class.isAssignableFrom(parameters[0]))
             return false;
         event = parameters[0].asSubclass(Event.class);
         listenerCallable = new ListenerCallable(plugin, listener, method, eventListener);
@@ -140,7 +140,7 @@ public class PluginManager {
         for (final Method method : methods) {
             eventListener = method.getAnnotation(EventListener.class);
             if (eventListener != null)
-                result = result || registerListenerMethod(listener, method, eventListener);
+                result = registerListenerMethod(listener, method, eventListener) || result;
         }
         return result;
     }
