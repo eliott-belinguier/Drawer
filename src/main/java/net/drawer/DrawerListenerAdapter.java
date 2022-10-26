@@ -8,6 +8,7 @@ import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEve
 import net.dv8tion.jda.api.events.interaction.command.UserContextInteractionEvent;
 import net.dv8tion.jda.api.events.interaction.component.ButtonInteractionEvent;
 import net.dv8tion.jda.api.events.interaction.component.SelectMenuInteractionEvent;
+import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.api.events.user.UserActivityEndEvent;
 import net.dv8tion.jda.api.events.user.UserActivityStartEvent;
 import net.dv8tion.jda.api.events.user.UserTypingEvent;
@@ -107,6 +108,15 @@ public class DrawerListenerAdapter extends ListenerAdapter {
     @Override
     public void onUserUpdateActivities(@Nonnull UserUpdateActivitiesEvent event) {
         this.pluginManager.callEvent(new net.drawer.event.jda.user.UserUpdateActivitiesEvent(event));
+    }
+
+    /*
+     * TODO: Self Events
+     */
+
+    @Override
+    public void onMessageReceived(@Nonnull MessageReceivedEvent event) {
+        this.pluginManager.callEvent(new net.drawer.event.jda.message.MessageReceivedEvent(event));
     }
 
 }
