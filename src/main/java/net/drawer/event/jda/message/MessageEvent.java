@@ -31,7 +31,7 @@ public class MessageEvent extends JDAEvent {
     }
 
     @NotNull
-    public MessageChannel getChannel() {
+    public MessageChannelUnion getChannel() {
         return (MessageChannelUnion) this.channel;
     }
 

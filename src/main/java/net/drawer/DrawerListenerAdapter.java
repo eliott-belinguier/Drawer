@@ -9,6 +9,10 @@ import net.dv8tion.jda.api.events.interaction.command.UserContextInteractionEven
 import net.dv8tion.jda.api.events.interaction.component.ButtonInteractionEvent;
 import net.dv8tion.jda.api.events.interaction.component.SelectMenuInteractionEvent;
 import net.dv8tion.jda.api.events.message.*;
+import net.dv8tion.jda.api.events.message.react.MessageReactionAddEvent;
+import net.dv8tion.jda.api.events.message.react.MessageReactionRemoveAllEvent;
+import net.dv8tion.jda.api.events.message.react.MessageReactionRemoveEmojiEvent;
+import net.dv8tion.jda.api.events.message.react.MessageReactionRemoveEvent;
 import net.dv8tion.jda.api.events.user.UserActivityEndEvent;
 import net.dv8tion.jda.api.events.user.UserActivityStartEvent;
 import net.dv8tion.jda.api.events.user.UserTypingEvent;
@@ -137,6 +141,26 @@ public class DrawerListenerAdapter extends ListenerAdapter {
     @Override
     public void onMessageEmbed(@Nonnull MessageEmbedEvent event) {
         this.pluginManager.callEvent(new net.drawer.event.jda.message.MessageEmbedEvent(event));
+    }
+
+    @Override
+    public void onMessageReactionAdd(@Nonnull MessageReactionAddEvent event) {
+        this.pluginManager.callEvent(new net.drawer.event.jda.message.MessageReactionAddEvent(event));
+    }
+
+    @Override
+    public void onMessageReactionRemove(@Nonnull MessageReactionRemoveEvent event) {
+        this.pluginManager.callEvent(new net.drawer.event.jda.message.MessageReactionRemoveEvent(event));
+    }
+
+    @Override
+    public void onMessageReactionRemoveAll(@Nonnull MessageReactionRemoveAllEvent event) {
+        this.pluginManager.callEvent(new net.drawer.event.jda.message.MessageReactionRemoveAllEvent(event));
+    }
+
+    @Override
+    public void onMessageReactionRemoveEmoji(@Nonnull MessageReactionRemoveEmojiEvent event) {
+        this.pluginManager.callEvent(new net.drawer.event.jda.message.MessageReactionRemoveEmojiEvent(event));
     }
 
 }
