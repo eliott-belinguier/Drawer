@@ -10,10 +10,7 @@ import java.io.File;
 import java.lang.reflect.Method;
 import java.net.MalformedURLException;
 import java.security.InvalidParameterException;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class PluginManager {
@@ -28,16 +25,14 @@ public class PluginManager {
         this.plugins = new ConcurrentHashMap<String, Plugin>();
     }
 
-    public Plugin loadPlugin(final File pluginFile) throws InvalidPluginInfoException, InvalidPluginException {
-        final PluginInfo pluginInfo;
+    private Plugin loadPlugin(final PluginInfo pluginInfo, final File pluginFile) throws InvalidPluginException {
         final PluginClassLoader pluginClassLoader;
         final Plugin plugin;
 
-        pluginInfo = PluginInfo.getPluginInfo(pluginFile);
         if (this.plugins.get(pluginInfo.name) != null)
             throw new InvalidPluginException("plugin already loaded");
         try {
-            pluginClassLoader = new PluginClassLoader(this, getClass().getClassLoader(), PluginInfo.getPluginInfo(pluginFile), pluginFile);
+            pluginClassLoader = new PluginClassLoader(this, getClass().getClassLoader(), pluginInfo, pluginFile);
         } catch (MalformedURLException exception) {
             throw new InvalidPluginException(exception);
         }
@@ -45,6 +40,10 @@ public class PluginManager {
         this.plugins.put(plugin.getName(), plugin);
         PluginContext.runInPluginContext(plugin, plugin::onLoad);
         return plugin;
+    }
+
+    public Plugin loadPlugin(final File pluginFile) throws InvalidPluginInfoException, InvalidPluginException {
+        return loadPlugin(PluginInfo.getPluginInfo(pluginFile), pluginFile);
     }
 
     private String getFileExtension(final File file) {
@@ -56,9 +55,38 @@ public class PluginManager {
         return name.substring(index + 1);
     }
 
+    public Set<Plugin> loadPlugins(final Set<File> files) {
+        final Map<PluginInfo, File> pluginInfos;
+        final LinkedList<PluginInfo> loadingQueue = new LinkedList<PluginInfo>();
+        final Set<Plugin> plugins;
+        PluginInfo pluginInfo;
+
+        if (files == null)
+            return null;
+        pluginInfos = new HashMap<PluginInfo, File>();
+        plugins = new HashSet<Plugin>();
+        for (File file : files) {
+            if (getFileExtension(file).equalsIgnoreCase("jar")) {
+                try {
+                    pluginInfo = PluginInfo.getPluginInfo(file);
+                    pluginInfos.put(pluginInfo, file);
+                } catch (InvalidPluginInfoException exception) {
+                    exception.printStackTrace();
+                }
+            }
+        }
+        for (final Map.Entry<PluginInfo, File> entry : pluginInfos.entrySet()) {
+            try {
+                plugins.add(loadPlugin(entry.getKey(), entry.getValue()));
+            } catch (InvalidPluginException exception) {
+                exception.printStackTrace();
+            }
+        }
+        return plugins;
+    }
+
     public Set<Plugin> loadPluginFolder(final File pluginFolder) {
         final File[] files;
-        final Set<Plugin> plugins;
 
         if (pluginFolder == null)
             throw new NullPointerException("plugin folder must be not null");
@@ -67,19 +95,7 @@ public class PluginManager {
         files = pluginFolder.listFiles();
         if (files == null)
             return null;
-        plugins = new HashSet<Plugin>();
-        for (File file : files) {
-            if (getFileExtension(file).equalsIgnoreCase("jar")) {
-                try {
-                    plugins.add(loadPlugin(file));
-                } catch (Exception exception) {
-                    exception.printStackTrace();
-                }
-            }
-        }
-        if (plugins.isEmpty())
-            return null;
-        return plugins;
+        return loadPlugins(new HashSet<File>(Arrays.asList(files)));
     }
 
     public boolean unloadPlugin(final String name) {
