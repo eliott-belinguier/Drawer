@@ -1,6 +1,9 @@
 package net.drawer;
 
 import net.drawer.plugin.PluginManager;
+import net.dv8tion.jda.api.events.guild.override.PermissionOverrideCreateEvent;
+import net.dv8tion.jda.api.events.guild.override.PermissionOverrideDeleteEvent;
+import net.dv8tion.jda.api.events.guild.override.PermissionOverrideUpdateEvent;
 import net.dv8tion.jda.api.events.interaction.ModalInteractionEvent;
 import net.dv8tion.jda.api.events.interaction.command.CommandAutoCompleteInteractionEvent;
 import net.dv8tion.jda.api.events.interaction.command.MessageContextInteractionEvent;
@@ -18,6 +21,7 @@ import net.dv8tion.jda.api.events.user.UserActivityStartEvent;
 import net.dv8tion.jda.api.events.user.UserTypingEvent;
 import net.dv8tion.jda.api.events.user.update.*;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
+import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nonnull;
 
@@ -161,6 +165,21 @@ public class DrawerListenerAdapter extends ListenerAdapter {
     @Override
     public void onMessageReactionRemoveEmoji(@Nonnull MessageReactionRemoveEmojiEvent event) {
         this.pluginManager.callEvent(new net.drawer.event.jda.message.MessageReactionRemoveEmojiEvent(event));
+    }
+
+    @Override
+    public void onPermissionOverrideDelete(@NotNull PermissionOverrideDeleteEvent event) {
+        this.pluginManager.callEvent(new net.drawer.event.jda.permission.PermissionOverrideDeleteEvent(event));
+    }
+
+    @Override
+    public void onPermissionOverrideUpdate(@NotNull PermissionOverrideUpdateEvent event) {
+        this.pluginManager.callEvent(new net.drawer.event.jda.permission.PermissionOverrideUpdateEvent(event));
+    }
+
+    @Override
+    public void onPermissionOverrideCreate(@NotNull PermissionOverrideCreateEvent event) {
+        this.pluginManager.callEvent(new net.drawer.event.jda.permission.PermissionOverrideCreateEvent(event));
     }
 
 }
