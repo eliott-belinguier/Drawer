@@ -16,7 +16,7 @@ public class Drawer {
     private final PluginManager pluginManager;
 
     private Drawer(final JDA jda) {
-        logger = Logger.getLogger("Drower");
+        logger = Logger.getLogger("Drawer");
         this.jda = jda;
         this.pluginManager = new PluginManager(this);
     }
