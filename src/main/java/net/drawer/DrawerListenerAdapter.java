@@ -1,6 +1,15 @@
 package net.drawer;
 
 import net.drawer.plugin.PluginManager;
+import net.dv8tion.jda.api.events.channel.ChannelCreateEvent;
+import net.dv8tion.jda.api.events.channel.ChannelDeleteEvent;
+import net.dv8tion.jda.api.events.channel.GenericChannelEvent;
+import net.dv8tion.jda.api.events.channel.forum.ForumTagAddEvent;
+import net.dv8tion.jda.api.events.channel.forum.ForumTagRemoveEvent;
+import net.dv8tion.jda.api.events.channel.forum.GenericForumTagEvent;
+import net.dv8tion.jda.api.events.channel.forum.update.ForumTagUpdateEmojiEvent;
+import net.dv8tion.jda.api.events.channel.forum.update.ForumTagUpdateNameEvent;
+import net.dv8tion.jda.api.events.channel.forum.update.GenericForumTagUpdateEvent;
 import net.dv8tion.jda.api.events.guild.override.PermissionOverrideCreateEvent;
 import net.dv8tion.jda.api.events.guild.override.PermissionOverrideDeleteEvent;
 import net.dv8tion.jda.api.events.guild.override.PermissionOverrideUpdateEvent;
@@ -16,6 +25,7 @@ import net.dv8tion.jda.api.events.message.react.MessageReactionAddEvent;
 import net.dv8tion.jda.api.events.message.react.MessageReactionRemoveAllEvent;
 import net.dv8tion.jda.api.events.message.react.MessageReactionRemoveEmojiEvent;
 import net.dv8tion.jda.api.events.message.react.MessageReactionRemoveEvent;
+import net.dv8tion.jda.api.events.self.*;
 import net.dv8tion.jda.api.events.user.UserActivityEndEvent;
 import net.dv8tion.jda.api.events.user.UserActivityStartEvent;
 import net.dv8tion.jda.api.events.user.UserTypingEvent;
@@ -118,9 +128,83 @@ public class DrawerListenerAdapter extends ListenerAdapter {
         this.pluginManager.callEvent(new net.drawer.event.jda.user.UserUpdateActivitiesEvent(event));
     }
 
+    @Override
+    public void onGenericSelfUpdate(@NotNull GenericSelfUpdateEvent event) {
+        this.pluginManager.callEvent(new net.drawer.event.jda.self.SelfUpdateEvent(event));
+    }
+
+    @Override
+    public void onSelfUpdateAvatar(@NotNull SelfUpdateAvatarEvent event) {
+        this.pluginManager.callEvent(new net.drawer.event.jda.self.SelfUpdateAvatarEvent(event));
+    }
+
+    @Override
+    public void onSelfUpdateMFA(@NotNull SelfUpdateMFAEvent event) {
+        this.pluginManager.callEvent(new net.drawer.event.jda.self.SelfUpdateMFAEvent(event));
+    }
+
+    @Override
+    public void onSelfUpdateVerified(@NotNull SelfUpdateVerifiedEvent event) {
+        this.pluginManager.callEvent(new net.drawer.event.jda.self.SelfUpdateVerifiedEvent(event));
+    }
+
+    @Override
+    public void onSelfUpdateName(@NotNull SelfUpdateNameEvent event) {
+        this.pluginManager.callEvent(new net.drawer.event.jda.self.SelfUpdateNameEvent(event));
+    }
+
     /*
-     * TODO: Self Events
-     */
+    public void onSelfUpdateDiscriminator(@NotNull SelfUpdateDiscriminatorEvent event) {
+        this.pluginManager.callEvent(new net.drawer.event.jda.self.SelfUpdateDiscriminatorEvent(event));
+    }*/
+
+    @Override
+    public void onGenericChannel(@NotNull GenericChannelEvent event) {
+        this.pluginManager.callEvent(new net.drawer.event.jda.channel.ChannelEvent(event));
+    }
+
+    @Override
+    public void onChannelCreate(@NotNull ChannelCreateEvent event) {
+        this.pluginManager.callEvent(new net.drawer.event.jda.channel.ChannelCreateEvent(event));
+    }
+
+    @Override
+    public void onChannelDelete(@NotNull ChannelDeleteEvent event) {
+        this.pluginManager.callEvent(new net.drawer.event.jda.channel.ChannelDeleteEvent(event));
+    }
+
+    @Override
+    public void onGenericForumTag(@NotNull GenericForumTagEvent event) {
+       this.pluginManager.callEvent(new net.drawer.event.jda.channel.forum.ForumTagEvent(event));
+    }
+
+    @Override
+    public void onForumTagAdd(@NotNull ForumTagAddEvent event) {
+        this.pluginManager.callEvent(new net.drawer.event.jda.channel.forum.ForumTagAddEvent(event));
+    }
+
+    @Override
+    public void onForumTagRemove(@NotNull ForumTagRemoveEvent event) {
+        this.pluginManager.callEvent(new net.drawer.event.jda.channel.forum.ForumTagRemoveEvent(event));
+    }
+
+    @Override
+    public void onGenericForumTagUpdate(@NotNull GenericForumTagUpdateEvent event) {
+        this.pluginManager.callEvent(new net.drawer.event.jda.channel.forum.update.ForumTagUpdateEvent(event));
+    }
+
+    @Override
+    public void onForumTagUpdateEmoji(@NotNull ForumTagUpdateEmojiEvent event) {
+        this.pluginManager.callEvent(new net.drawer.event.jda.channel.forum.update.ForumTagUpdateEmojiEvent(event));
+    }
+    @Override
+    public void onForumTagUpdateName(@NotNull ForumTagUpdateNameEvent event) {
+        this.pluginManager.callEvent(new net.drawer.event.jda.channel.forum.update.ForumTagUpdateNameEvent(event));
+    }
+    @Override
+    public void onForumTagUpdateModerated(@NotNull net.dv8tion.jda.api.events.channel.forum.update.ForumTagUpdateModeratedEvent event) {
+        this.pluginManager.callEvent(new net.drawer.event.jda.channel.forum.update.ForumTagUpdateModeratedEvent(event));
+    }
 
     @Override
     public void onMessageReceived(@Nonnull MessageReceivedEvent event) {
