@@ -14,13 +14,14 @@
  * limitations under the License.
  */
 
-package net.dv8tion.jda.api.events.channel.update;
+package net.drawer.event.jda.channel.update;
 
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.entities.channel.Channel;
 import net.dv8tion.jda.api.entities.channel.ChannelField;
 import net.dv8tion.jda.api.entities.channel.concrete.ForumChannel;
 import net.dv8tion.jda.api.entities.emoji.EmojiUnion;
+import net.dv8tion.jda.api.events.channel.update.GenericChannelUpdateEvent;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -32,12 +33,15 @@ import javax.annotation.Nullable;
  *
  * @see ChannelField#DEFAULT_REACTION_EMOJI
  */
-public class ChannelUpdateDefaultReactionEvent extends GenericChannelUpdateEvent<EmojiUnion>
+public class ChannelUpdateDefaultReactionEvent extends ChannelUpdateEvent<EmojiUnion>
 {
 
     public static final ChannelField FIELD = ChannelField.DEFAULT_REACTION_EMOJI;
     public static final String IDENTIFIER = FIELD.getFieldName();
 
+    public ChannelUpdateDefaultReactionEvent(GenericChannelUpdateEvent<EmojiUnion> jdaEvent) {
+        super(jdaEvent);
+    }
     public ChannelUpdateDefaultReactionEvent(@Nonnull JDA api, long responseNumber, @Nonnull Channel channel, @Nullable EmojiUnion oldValue, @Nullable EmojiUnion newValue)
     {
         super(api, responseNumber, channel, FIELD, oldValue, newValue);

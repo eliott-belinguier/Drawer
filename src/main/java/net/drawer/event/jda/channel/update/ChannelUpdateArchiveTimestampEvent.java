@@ -14,13 +14,13 @@
  * limitations under the License.
  */
 
-package net.dv8tion.jda.api.events.channel.update;
+package net.drawer.event.jda.channel.update;
 
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.entities.channel.Channel;
 import net.dv8tion.jda.api.entities.channel.ChannelField;
-import net.dv8tion.jda.api.entities.channel.concrete.ForumChannel;
 import net.dv8tion.jda.api.entities.channel.concrete.ThreadChannel;
+import net.dv8tion.jda.api.events.channel.update.GenericChannelUpdateEvent;
 import net.dv8tion.jda.internal.utils.Helpers;
 
 import javax.annotation.Nonnull;
@@ -41,7 +41,7 @@ import java.time.OffsetDateTime;
  * @see ThreadChannel#getTimeArchiveInfoLastModified()
  * @see ChannelField#ARCHIVED_TIMESTAMP
  */
-public class ChannelUpdateArchiveTimestampEvent extends GenericChannelUpdateEvent<OffsetDateTime>
+public class ChannelUpdateArchiveTimestampEvent extends ChannelUpdateEvent<OffsetDateTime>
 {
     public static final ChannelField FIELD = ChannelField.ARCHIVED_TIMESTAMP;
     public static final String IDENTIFIER = FIELD.getFieldName();
@@ -57,6 +57,12 @@ public class ChannelUpdateArchiveTimestampEvent extends GenericChannelUpdateEven
 
         this.oldTimestamp = oldValue;
         this.newTimestamp = newValue;
+    }
+
+    public ChannelUpdateArchiveTimestampEvent(GenericChannelUpdateEvent<OffsetDateTime> jdaEvent) {
+        super(jdaEvent);
+        this.oldTimestamp = jdaEvent.getOldValue().toEpochSecond();
+        this.newTimestamp = jdaEvent.getNewValue().toEpochSecond();
     }
 
     @Override

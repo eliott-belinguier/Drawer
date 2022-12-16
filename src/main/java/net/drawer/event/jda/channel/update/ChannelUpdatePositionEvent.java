@@ -14,12 +14,13 @@
  * limitations under the License.
  */
 
-package net.dv8tion.jda.api.events.channel.update;
+package net.drawer.event.jda.channel.update;
 
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.entities.channel.Channel;
 import net.dv8tion.jda.api.entities.channel.ChannelField;
 import net.dv8tion.jda.api.entities.channel.attribute.IPositionableChannel;
+import net.dv8tion.jda.api.events.channel.update.GenericChannelUpdateEvent;
 
 import javax.annotation.Nonnull;
 
@@ -33,10 +34,14 @@ import javax.annotation.Nonnull;
  * @see IPositionableChannel#getPosition()
  * @see ChannelField#POSITION
  */
-public class ChannelUpdatePositionEvent extends GenericChannelUpdateEvent<Integer>
+public class ChannelUpdatePositionEvent extends ChannelUpdateEvent<Integer>
 {
     public static final ChannelField FIELD = ChannelField.POSITION;
     public static final String IDENTIFIER = FIELD.getFieldName();
+
+    public ChannelUpdatePositionEvent(GenericChannelUpdateEvent<Integer> jdaEvent) {
+        super(jdaEvent);
+    }
 
     public ChannelUpdatePositionEvent(@Nonnull JDA api, long responseNumber, Channel channel, Integer oldValue, Integer newValue)
     {

@@ -14,12 +14,13 @@
  * limitations under the License.
  */
 
-package net.dv8tion.jda.api.events.channel.update;
+package net.drawer.event.jda.channel.update;
 
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.entities.channel.Channel;
 import net.dv8tion.jda.api.entities.channel.ChannelField;
 import net.dv8tion.jda.api.entities.channel.attribute.IThreadContainer;
+import net.dv8tion.jda.api.events.channel.update.GenericChannelUpdateEvent;
 
 import javax.annotation.Nonnull;
 
@@ -30,11 +31,15 @@ import javax.annotation.Nonnull;
  *
  * @see ChannelField#DEFAULT_THREAD_SLOWMODE
  */
-public class ChannelUpdateDefaultThreadSlowmodeEvent extends GenericChannelUpdateEvent<Integer>
+public class ChannelUpdateDefaultThreadSlowmodeEvent extends ChannelUpdateEvent<Integer>
 {
 
     public static final ChannelField FIELD = ChannelField.DEFAULT_THREAD_SLOWMODE;
     public static final String IDENTIFIER = FIELD.getFieldName();
+
+    public ChannelUpdateDefaultThreadSlowmodeEvent(GenericChannelUpdateEvent<Integer> jdaEvent) {
+        super(jdaEvent);
+    }
 
     public ChannelUpdateDefaultThreadSlowmodeEvent(@Nonnull JDA api, long responseNumber, @Nonnull Channel channel, int oldValue, int newValue)
     {

@@ -14,12 +14,13 @@
  * limitations under the License.
  */
 
-package net.dv8tion.jda.api.events.channel.update;
+package net.drawer.event.jda.channel.update;
 
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.entities.channel.Channel;
 import net.dv8tion.jda.api.entities.channel.ChannelField;
 import net.dv8tion.jda.api.entities.channel.middleman.AudioChannel;
+import net.dv8tion.jda.api.events.channel.update.GenericChannelUpdateEvent;
 
 import javax.annotation.Nonnull;
 
@@ -31,11 +32,14 @@ import javax.annotation.Nonnull;
  * @see AudioChannel#getBitrate()
  * @see ChannelField#BITRATE
  */
-public class ChannelUpdateBitrateEvent extends GenericChannelUpdateEvent<Integer>
+public class ChannelUpdateBitrateEvent extends ChannelUpdateEvent<Integer>
 {
     public static final ChannelField FIELD = ChannelField.BITRATE;
     public static final String IDENTIFIER = FIELD.getFieldName();
 
+    public ChannelUpdateBitrateEvent(GenericChannelUpdateEvent<Integer> jdaEvent) {
+        super(jdaEvent);
+    }
     public ChannelUpdateBitrateEvent(@Nonnull JDA api, long responseNumber, Channel channel, Integer oldValue, Integer newValue)
     {
         super(api, responseNumber, channel, FIELD, oldValue, newValue);

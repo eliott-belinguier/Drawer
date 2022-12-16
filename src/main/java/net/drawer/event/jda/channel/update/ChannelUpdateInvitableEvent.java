@@ -14,12 +14,13 @@
  * limitations under the License.
  */
 
-package net.dv8tion.jda.api.events.channel.update;
+package net.drawer.event.jda.channel.update;
 
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.entities.channel.Channel;
 import net.dv8tion.jda.api.entities.channel.ChannelField;
 import net.dv8tion.jda.api.entities.channel.concrete.ThreadChannel;
+import net.dv8tion.jda.api.events.channel.update.GenericChannelUpdateEvent;
 
 import javax.annotation.Nonnull;
 
@@ -33,10 +34,14 @@ import javax.annotation.Nonnull;
  * @see ThreadChannel#isInvitable()
  * @see ChannelField#INVITABLE
  */
-public class ChannelUpdateInvitableEvent extends GenericChannelUpdateEvent<Boolean>
+public class ChannelUpdateInvitableEvent extends ChannelUpdateEvent<Boolean>
 {
     public static final ChannelField FIELD = ChannelField.INVITABLE;
     public static final String IDENTIFIER = FIELD.getFieldName();
+
+    public ChannelUpdateInvitableEvent(GenericChannelUpdateEvent<Boolean> jdaEvent) {
+        super(jdaEvent);
+    }
 
     public ChannelUpdateInvitableEvent(@Nonnull JDA api, long responseNumber, Channel channel, boolean oldValue, boolean newValue)
     {

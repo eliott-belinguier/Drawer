@@ -14,13 +14,15 @@
  * limitations under the License.
  */
 
-package net.dv8tion.jda.api.events.channel.update;
+package net.drawer.event.jda.channel.update;
 
 import net.drawer.event.jda.channel.update.ChannelUpdateEvent;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.entities.channel.Channel;
 import net.dv8tion.jda.api.entities.channel.ChannelField;
 import net.dv8tion.jda.api.entities.channel.concrete.VoiceChannel;
+import net.dv8tion.jda.api.events.channel.GenericChannelEvent;
+import net.dv8tion.jda.api.events.channel.update.GenericChannelUpdateEvent;
 
 import javax.annotation.Nonnull;
 
@@ -44,7 +46,7 @@ public class ChannelUpdateUserLimitEvent extends ChannelUpdateEvent<Integer>
         super(api, responseNumber, channel, FIELD, oldValue, newValue);
     }
 
-    public ChannelUpdateUserLimitEvent(ChannelUpdateEvent) {
-
+    public ChannelUpdateUserLimitEvent(GenericChannelUpdateEvent<Integer> jdaEvent) {
+        super(jdaEvent);
     }
 }

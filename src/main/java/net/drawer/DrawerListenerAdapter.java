@@ -10,6 +10,7 @@ import net.dv8tion.jda.api.events.channel.forum.GenericForumTagEvent;
 import net.dv8tion.jda.api.events.channel.forum.update.ForumTagUpdateEmojiEvent;
 import net.dv8tion.jda.api.events.channel.forum.update.ForumTagUpdateNameEvent;
 import net.dv8tion.jda.api.events.channel.forum.update.GenericForumTagUpdateEvent;
+import net.dv8tion.jda.api.events.channel.update.*;
 import net.dv8tion.jda.api.events.guild.override.PermissionOverrideCreateEvent;
 import net.dv8tion.jda.api.events.guild.override.PermissionOverrideDeleteEvent;
 import net.dv8tion.jda.api.events.guild.override.PermissionOverrideUpdateEvent;
@@ -45,32 +46,32 @@ public class DrawerListenerAdapter extends ListenerAdapter {
 
     @Override
     public void onSlashCommandInteraction(@Nonnull SlashCommandInteractionEvent event) {
-        this.pluginManager.callEvent(new net.drawer.event.jda.interaction.SlashCommandInteractionEvent(event));
+        this.pluginManager.callEvent(new net.drawer.event.jda.interaction.command.SlashCommandInteractionEvent(event));
     }
 
     @Override
     public void onUserContextInteraction(@Nonnull UserContextInteractionEvent event) {
-        this.pluginManager.callEvent(new net.drawer.event.jda.interaction.UserContextInteractionEvent(event));
+        this.pluginManager.callEvent(new net.drawer.event.jda.interaction.command.UserContextInteractionEvent(event));
     }
 
     @Override
     public void onMessageContextInteraction(@Nonnull MessageContextInteractionEvent event) {
-        this.pluginManager.callEvent(new net.drawer.event.jda.interaction.MessageContextInteractionEvent(event));
+        this.pluginManager.callEvent(new net.drawer.event.jda.interaction.command.MessageContextInteractionEvent(event));
     }
 
     @Override
     public void onButtonInteraction(@Nonnull ButtonInteractionEvent event) {
-        this.pluginManager.callEvent(new net.drawer.event.jda.interaction.ButtonInteractionEvent(event));
+        this.pluginManager.callEvent(new net.drawer.event.jda.interaction.component.ButtonInteractionEvent(event));
     }
 
     @Override
     public void onSelectMenuInteraction(@Nonnull SelectMenuInteractionEvent event) {
-        this.pluginManager.callEvent(new net.drawer.event.jda.interaction.SelectMenuInteractionEvent(event));
+        this.pluginManager.callEvent(new net.drawer.event.jda.interaction.component.SelectMenuInteractionEvent(event));
     }
 
     @Override
     public void onCommandAutoCompleteInteraction(@Nonnull CommandAutoCompleteInteractionEvent event) {
-        this.pluginManager.callEvent(new net.drawer.event.jda.interaction.CommandAutoCompleteInteractionEvent(event));
+        this.pluginManager.callEvent(new net.drawer.event.jda.interaction.command.CommandAutoCompleteInteractionEvent(event));
     }
 
     @Override
@@ -266,4 +267,103 @@ public class DrawerListenerAdapter extends ListenerAdapter {
         this.pluginManager.callEvent(new net.drawer.event.jda.permission.PermissionOverrideCreateEvent(event));
     }
 
+    @Override
+    public void onChannelUpdateAppliedTags(@NotNull ChannelUpdateAppliedTagsEvent event) {
+        this.pluginManager.callEvent(new net.drawer.event.jda.channel.update.ChannelUpdateAppliedTagsEvent(event));
+    }
+
+    @Override
+    public void onChannelUpdateArchived(@NotNull ChannelUpdateArchivedEvent event) {
+        this.pluginManager.callEvent(new net.drawer.event.jda.channel.update.ChannelUpdateArchivedEvent(event));
+    }
+
+    @Override
+    public void onChannelUpdateArchiveTimestamp(@NotNull ChannelUpdateArchiveTimestampEvent event) {
+        this.pluginManager.callEvent(new net.drawer.event.jda.channel.update.ChannelUpdateArchiveTimestampEvent(event));
+    }
+
+    @Override
+    public void onChannelUpdateAutoArchiveDuration(@NotNull ChannelUpdateAutoArchiveDurationEvent event) {
+        this.pluginManager.callEvent(new net.drawer.event.jda.channel.update.ChannelUpdateAutoArchiveDurationEvent(event));
+    }
+
+    @Override
+    public void onChannelUpdateBitrate(@NotNull ChannelUpdateBitrateEvent event) {
+        this.pluginManager.callEvent(new net.drawer.event.jda.channel.update.ChannelUpdateBitrateEvent(event));
+    }
+
+    @Override
+    public void onChannelUpdateDefaultReaction(@NotNull ChannelUpdateDefaultReactionEvent event) {
+        this.pluginManager.callEvent(new net.drawer.event.jda.channel.update.ChannelUpdateDefaultReactionEvent(event));
+    }
+
+    @Override
+    public void onChannelUpdateDefaultThreadSlowmode(@NotNull ChannelUpdateDefaultThreadSlowmodeEvent event) {
+        this.pluginManager.callEvent(new net.drawer.event.jda.channel.update.ChannelUpdateDefaultThreadSlowmodeEvent(event));
+    }
+
+    @Override
+    public void onGenericChannelUpdate(@NotNull GenericChannelUpdateEvent<?> event) {
+        this.pluginManager.callEvent(new net.drawer.event.jda.channel.update.ChannelUpdateEvent(event));
+    }
+
+    @Override
+    public void onChannelUpdateFlags(@NotNull ChannelUpdateFlagsEvent event) {
+        this.pluginManager.callEvent(new net.drawer.event.jda.channel.update.ChannelUpdateFlagsEvent(event));
+    }
+
+    @Override
+    public void onChannelUpdateInvitable(@NotNull ChannelUpdateInvitableEvent event) {
+        this.pluginManager.callEvent(new net.drawer.event.jda.channel.update.ChannelUpdateInvitableEvent(event));
+    }
+
+    @Override
+    public void onChannelUpdateLocked(@NotNull ChannelUpdateLockedEvent event) {
+        this.pluginManager.callEvent(new net.drawer.event.jda.channel.update.ChannelUpdateLockedEvent(event));
+    }
+
+    @Override
+    public void onChannelUpdateName(@NotNull ChannelUpdateNameEvent event) {
+        this.pluginManager.callEvent(new net.drawer.event.jda.channel.update.ChannelUpdateNameEvent(event));
+    }
+
+    @Override
+    public void onChannelUpdateNSFW(@NotNull ChannelUpdateNSFWEvent event) {
+        this.pluginManager.callEvent(new net.drawer.event.jda.channel.update.ChannelUpdateNSFWEvent(event));
+    }
+
+    @Override
+    public void onChannelUpdateParent(@NotNull ChannelUpdateParentEvent event) {
+        this.pluginManager.callEvent(new net.drawer.event.jda.channel.update.ChannelUpdateParentEvent(event));
+    }
+
+    @Override
+    public void onChannelUpdatePosition(@NotNull ChannelUpdatePositionEvent event) {
+        this.pluginManager.callEvent(new net.drawer.event.jda.channel.update.ChannelUpdatePositionEvent(event));
+    }
+
+    @Override
+    public void onChannelUpdateRegion(@NotNull ChannelUpdateRegionEvent event) {
+        this.pluginManager.callEvent(new net.drawer.event.jda.channel.update.ChannelUpdateRegionEvent(event));
+    }
+
+    @Override
+    public void onChannelUpdateSlowmode(@NotNull ChannelUpdateSlowmodeEvent event) {
+        this.pluginManager.callEvent(new net.drawer.event.jda.channel.update.ChannelUpdateSlowmodeEvent(event));
+    }
+
+    @Override
+    public void onChannelUpdateTopic(@NotNull ChannelUpdateTopicEvent event) {
+        this.pluginManager.callEvent(new net.drawer.event.jda.channel.update.ChannelUpdateTopicEvent(event));
+    }
+
+    @Override
+    public void onChannelUpdateType(@NotNull ChannelUpdateTypeEvent event) {
+        this.pluginManager.callEvent(new net.drawer.event.jda.channel.update.ChannelUpdateTypeEvent(event));
+    }
+
+    @Override
+    public void onChannelUpdateUserLimit(@NotNull ChannelUpdateUserLimitEvent event) {
+        this.pluginManager.callEvent(new net.drawer.event.jda.channel.update.ChannelUpdateUserLimitEvent(event));
+    }
 }

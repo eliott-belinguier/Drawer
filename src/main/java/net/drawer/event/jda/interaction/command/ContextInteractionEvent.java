@@ -1,5 +1,6 @@
-package net.drawer.event.jda.interaction;
+package net.drawer.event.jda.interaction.command;
 
+import net.drawer.event.jda.interaction.command.CommandInteractionEvent;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.events.Event;
 import net.dv8tion.jda.api.events.interaction.command.GenericContextInteractionEvent;

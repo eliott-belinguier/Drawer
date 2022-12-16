@@ -28,14 +28,6 @@ import net.dv8tion.jda.api.events.channel.update.GenericChannelUpdateEvent;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-/**
- * Top-level channel update event type indicating that a field of a {@link Channel} was updated.
- * <br>All channel update events JDA fires are derived from this class.
- *
- * @param <T>
- *        The value type of the field that has been updated.
- * @see ChannelField
- */
 public class ChannelUpdateEvent<T> extends ChannelEvent implements UpdateEvent<Channel, T>
 {
     protected final ChannelField channelField;
@@ -57,12 +49,6 @@ public class ChannelUpdateEvent<T> extends ChannelEvent implements UpdateEvent<C
         this.oldValue = event.getOldValue();
         this.newValue = event.getNewValue();
     }
-
-    /**
-     * The identifier of the {@link Channel Channel's} field that has just been updated.
-     *
-     * @return The identifier of the {@link Channel Channel's} field that has just been updated.
-     */
     @Nonnull
     @Override
     public String getPropertyIdentifier()
@@ -70,12 +56,7 @@ public class ChannelUpdateEvent<T> extends ChannelEvent implements UpdateEvent<C
         return channelField.getFieldName();
     }
 
-    /**
-     * The {@link Channel} entity affected by this update event.
-     * <br>Equivalent with {@code getChannel()}.
-     *
-     * @return The {@link Channel} entity affected by this update event.
-     */
+
     @Nonnull
     @Override
     public Channel getEntity()
@@ -83,11 +64,7 @@ public class ChannelUpdateEvent<T> extends ChannelEvent implements UpdateEvent<C
         return getChannel();
     }
 
-    /**
-     * The {@link Channel Channel's} old value of the just updated field.
-     *
-     * @return The old value of the just updated field.
-     */
+
     @Nullable
     @Override
     public T getOldValue()
@@ -95,11 +72,7 @@ public class ChannelUpdateEvent<T> extends ChannelEvent implements UpdateEvent<C
         return oldValue;
     }
 
-    /**
-     * The {@link Channel Channel's} new value of the just updated field.
-     *
-     * @return The new value of the just updated field.
-     */
+
     @Nullable
     @Override
     public T getNewValue()

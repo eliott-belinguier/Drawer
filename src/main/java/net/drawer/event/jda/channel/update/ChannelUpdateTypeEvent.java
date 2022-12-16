@@ -14,12 +14,14 @@
  * limitations under the License.
  */
 
-package net.dv8tion.jda.api.events.channel.update;
+package net.drawer.event.jda.channel.update;
 
+import net.drawer.event.jda.channel.update.ChannelUpdateEvent;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.entities.channel.Channel;
 import net.dv8tion.jda.api.entities.channel.ChannelField;
 import net.dv8tion.jda.api.entities.channel.ChannelType;
+import net.dv8tion.jda.api.events.channel.update.GenericChannelUpdateEvent;
 
 import javax.annotation.Nonnull;
 
@@ -37,7 +39,7 @@ import javax.annotation.Nonnull;
  * @see Channel#getType()
  * @see ChannelField#TYPE
  */
-public class ChannelUpdateTypeEvent extends GenericChannelUpdateEvent<ChannelType>
+public class ChannelUpdateTypeEvent extends ChannelUpdateEvent<ChannelType>
 {
     public static final ChannelField FIELD = ChannelField.TYPE;
     public static final String IDENTIFIER = FIELD.getFieldName();
@@ -45,5 +47,9 @@ public class ChannelUpdateTypeEvent extends GenericChannelUpdateEvent<ChannelTyp
     public ChannelUpdateTypeEvent(@Nonnull JDA api, long responseNumber, Channel channel, ChannelType oldValue, ChannelType newValue)
     {
         super(api, responseNumber, channel, FIELD, oldValue, newValue);
+    }
+
+    public ChannelUpdateTypeEvent(GenericChannelUpdateEvent<ChannelType> jdaEvent) {
+        super(jdaEvent);
     }
 }

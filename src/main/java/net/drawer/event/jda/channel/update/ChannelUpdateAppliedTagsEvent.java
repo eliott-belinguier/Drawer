@@ -14,13 +14,15 @@
  * limitations under the License.
  */
 
-package net.dv8tion.jda.api.events.channel.update;
+package net.drawer.event.jda.channel.update;
 
+import net.drawer.event.jda.channel.update.ChannelUpdateEvent;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.entities.channel.ChannelField;
 import net.dv8tion.jda.api.entities.channel.concrete.ForumChannel;
 import net.dv8tion.jda.api.entities.channel.concrete.ThreadChannel;
 import net.dv8tion.jda.api.entities.channel.forums.ForumTag;
+import net.dv8tion.jda.api.events.channel.update.GenericChannelUpdateEvent;
 import net.dv8tion.jda.api.utils.cache.SortedSnowflakeCacheView;
 import net.dv8tion.jda.internal.utils.Helpers;
 
@@ -37,7 +39,7 @@ import java.util.Objects;
  * @see ThreadChannel#getAppliedTags()
  * @see ChannelField#APPLIED_TAGS
  */
-public class ChannelUpdateAppliedTagsEvent extends GenericChannelUpdateEvent<List<Long>>
+public class ChannelUpdateAppliedTagsEvent extends ChannelUpdateEvent<List<Long>>
 {
 
     public static final ChannelField FIELD = ChannelField.APPLIED_TAGS;
@@ -48,13 +50,10 @@ public class ChannelUpdateAppliedTagsEvent extends GenericChannelUpdateEvent<Lis
         super(api, responseNumber, channel, FIELD, oldValue, newValue);
     }
 
-    /**
-     * The newly added tags.
-     *
-     * <p>This requires {@link net.dv8tion.jda.api.utils.cache.CacheFlag#FORUM_TAGS CacheFlag.FORUM_TAGS} to be enabled.
-     *
-     * @return The tags that were added to the post
-     */
+    public ChannelUpdateAppliedTagsEvent(GenericChannelUpdateEvent<List<Long>> jdaEvent) {
+        super(jdaEvent);
+    }
+
     @Nonnull
     public List<ForumTag> getAddedTags()
     {
@@ -63,13 +62,6 @@ public class ChannelUpdateAppliedTagsEvent extends GenericChannelUpdateEvent<Lis
         return newTags;
     }
 
-    /**
-     * The removed tags.
-     *
-     * <p>This requires {@link net.dv8tion.jda.api.utils.cache.CacheFlag#FORUM_TAGS CacheFlag.FORUM_TAGS} to be enabled.
-     *
-     * @return The tags that were removed from the post
-     */
     @Nonnull
     public List<ForumTag> getRemovedTags()
     {
@@ -78,13 +70,6 @@ public class ChannelUpdateAppliedTagsEvent extends GenericChannelUpdateEvent<Lis
         return oldTags;
     }
 
-    /**
-     * The new list of applied tags.
-     *
-     * <p>This requires {@link net.dv8tion.jda.api.utils.cache.CacheFlag#FORUM_TAGS CacheFlag.FORUM_TAGS} to be enabled.
-     *
-     * @return The updated list of applied tags
-     */
     @Nonnull
     public List<ForumTag> getNewTags()
     {
@@ -96,13 +81,6 @@ public class ChannelUpdateAppliedTagsEvent extends GenericChannelUpdateEvent<Lis
                 .collect(Helpers.toUnmodifiableList());
     }
 
-    /**
-     * The old list of applied tags.
-     *
-     * <p>This requires {@link net.dv8tion.jda.api.utils.cache.CacheFlag#FORUM_TAGS CacheFlag.FORUM_TAGS} to be enabled.
-     *
-     * @return The previous list of applied tags
-     */
     @Nonnull
     public List<ForumTag> getOldTags()
     {

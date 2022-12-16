@@ -14,12 +14,13 @@
  * limitations under the License.
  */
 
-package net.dv8tion.jda.api.events.channel.update;
+package net.drawer.event.jda.channel.update;
 
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.entities.channel.Channel;
 import net.dv8tion.jda.api.entities.channel.ChannelField;
 import net.dv8tion.jda.api.entities.channel.attribute.IAgeRestrictedChannel;
+import net.dv8tion.jda.api.events.channel.update.GenericChannelUpdateEvent;
 
 import javax.annotation.Nonnull;
 
@@ -33,10 +34,14 @@ import javax.annotation.Nonnull;
  * @see IAgeRestrictedChannel#isNSFW()
  * @see ChannelField#NSFW
  */
-public class ChannelUpdateNSFWEvent extends GenericChannelUpdateEvent<Boolean>
+public class ChannelUpdateNSFWEvent extends ChannelUpdateEvent<Boolean>
 {
     public static ChannelField FIELD = ChannelField.NSFW;
     public static final String IDENTIFIER = FIELD.getFieldName();
+
+    public ChannelUpdateNSFWEvent(GenericChannelUpdateEvent<Boolean> jdaEvent) {
+        super(jdaEvent);
+    }
 
     public ChannelUpdateNSFWEvent(@Nonnull JDA api, long responseNumber, Channel channel, Boolean oldValue, Boolean newValue)
     {

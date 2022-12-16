@@ -14,13 +14,14 @@
  * limitations under the License.
  */
 
-package net.dv8tion.jda.api.events.channel.update;
+package net.drawer.event.jda.channel.update;
 
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.entities.channel.Channel;
 import net.dv8tion.jda.api.entities.channel.ChannelField;
 import net.dv8tion.jda.api.entities.channel.attribute.ICategorizableChannel;
 import net.dv8tion.jda.api.entities.channel.concrete.Category;
+import net.dv8tion.jda.api.events.channel.update.GenericChannelUpdateEvent;
 
 import javax.annotation.Nonnull;
 
@@ -34,10 +35,14 @@ import javax.annotation.Nonnull;
  * @see ICategorizableChannel#getParentCategory()
  * @see ChannelField#PARENT
  */
-public class ChannelUpdateParentEvent extends GenericChannelUpdateEvent<Category>
+public class ChannelUpdateParentEvent extends ChannelUpdateEvent<Category>
 {
     public static final ChannelField FIELD = ChannelField.PARENT;
     public static final String IDENTIFIER = FIELD.getFieldName();
+
+    public ChannelUpdateParentEvent(GenericChannelUpdateEvent<Category> jdaEvent) {
+        super(jdaEvent);
+    }
 
     public ChannelUpdateParentEvent(@Nonnull JDA api, long responseNumber, Channel channel, Category oldValue, Category newValue)
     {
